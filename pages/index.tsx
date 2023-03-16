@@ -50,7 +50,16 @@ export default function Home() {
       ) : (
         <>
           <div>Welecom {data?.user?.name}</div>
-          <Button color="primary" onClick={() => signOut()}>
+          <Button
+            color="primary"
+            onClick={async () => {
+              try {
+                await signOut();
+              } catch (er) {
+                console.log("err : ", er);
+              }
+            }}
+          >
             Sign Out
           </Button>
         </>

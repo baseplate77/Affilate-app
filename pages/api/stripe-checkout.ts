@@ -5,32 +5,24 @@ import Stripe from "stripe";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
     apiVersion: "2022-11-15"
 });
-type Data = {
-    name: string
-}
+
 
 const DOMAIN_URL = 'http://localhost:3000/'
 
 export default async function handler(
     req: NextApiRequest,
-    res: NextApiResponse<Data>
+    res: NextApiResponse
 ) {
 
     const { affiliateId, email } = JSON.parse(req.body)
 
-
     try {
         // Create Checkout Sessions from body params.
         const session = await stripe.checkout.sessions.create({
-
-            // currency: "USD",
-
-
             line_items: [
                 {
                     price_data: {
                         currency: "INR",
-
                         unit_amount: 300 * 100,
                         product_data: {
                             name: "Flutter Notification Course",
@@ -38,15 +30,12 @@ export default async function handler(
                                 "https://firebasestorage.googleapis.com/v0/b/flutter-course-website.appspot.com/o/website%2Fcourse-poster.png?alt=media&token=bfa2a33c-c098-416b-9b19-5773bd212766",
                             ],
                         },
-
                     },
-
                     quantity: 1,
                 },
             ],
             tax_id_collection: { enabled: true },
             payment_intent_data: {
-
                 metadata: {
                     affilate_Id: affiliateId,
                     email: email

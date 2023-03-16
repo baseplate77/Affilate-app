@@ -53,6 +53,8 @@ export default function Home() {
           <Button
             color="primary"
             onClick={async () => {
+              console.log("sign Out");
+
               try {
                 await signOut();
               } catch (er) {

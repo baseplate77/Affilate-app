@@ -4,19 +4,10 @@ import Script from "next/script";
 export default function Document() {
   return (
     <Html lang="en">
-      <Head>
-        <script
-          async
-          src="https://reflio.com/js/reflio.min.js"
-          data-reflio="k6da5efnjz88obh"
-        />
-      </Head>
+      <Head></Head>
       <body>
         <Main />
         <NextScript />
-        <script type="text/javascript">
-          await Reflio.signup('yourcustomer@email.com')
-        </script>
       </body>
     </Html>
   );

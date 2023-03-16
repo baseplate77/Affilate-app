@@ -17,6 +17,8 @@ export default function Home() {
   // add check coookie exist and expire data
 
   const handleCheckout = async () => {
+    console.log("check out ");
+
     const affiliateId = (affiliateService.getDataFromCookie() as any)
       .affiliateId;
     // console.log("affiliate :", affiliateId);
@@ -43,18 +45,17 @@ export default function Home() {
         <title>Affilate Program App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Button onClick={() => handleCheckout()}>Checkout</Button>
+      <button onClick={() => handleCheckout()}>Checkout</button>
 
       {data === null ? (
-        <Button onClick={() => signIn("google")}>Sign in Bro</Button>
+        <button onClick={() => signIn("google")}>Sign in Bro</button>
       ) : (
         <>
           <div>Welecom {data?.user?.name}</div>
-          <Button
+          <button
             color="primary"
             onClick={async () => {
               console.log("sign Out");
-
               try {
                 await signOut();
               } catch (er) {
@@ -63,7 +64,7 @@ export default function Home() {
             }}
           >
             Sign Out
-          </Button>
+          </button>
         </>
       )}
     </>
